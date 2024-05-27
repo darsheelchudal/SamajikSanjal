@@ -10,6 +10,6 @@ export const verifyToken = async (req, res, next) => {
     req.user = verified;
     next();
   } catch (error) {
-    res.send(500).json(error.message);
+    res.send(500).json({ error: error.message });
   }
 };
