@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import express from "express";
 
-const UserSchema = new mongoose.Scehma(
+const userSchema = new mongoose.Scehma(
   {
     firstName: {
       type: String,
@@ -41,3 +41,7 @@ const UserSchema = new mongoose.Scehma(
   },
   { timestamps: true }
 );
+
+const User = mongoose.model("User", userSchema);
+
+export default User;
