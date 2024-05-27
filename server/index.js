@@ -8,6 +8,7 @@ import multer, { diskStorage } from "multer";
 import helmet from "helmet";
 import path from "path";
 import { fileURLToPath } from "url";
+import { register } from "./controllers/auth.js";
 
 // CONFIGURATION
 const __filename = fileURLToPath(import.meta.url);
@@ -37,6 +38,9 @@ const storage =
   });
 
 const upload = multer({ storage });
+
+//Routes with files
+app.post("/auth/register", upload.single("picture"), register);
 
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 8000;
