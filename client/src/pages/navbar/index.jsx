@@ -8,11 +8,7 @@ function Navbar() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const fullName = `${user.firstName} ${user.lastName}`;
-  return (
-    <>
-      <div></div>
-    </>
-  );
+  return <></>;
 }
 
 export default Navbar;
