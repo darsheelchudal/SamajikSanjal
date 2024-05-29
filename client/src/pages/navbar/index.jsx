@@ -8,7 +8,17 @@ function Navbar() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const fullName = `${user.firstName} ${user.lastName}`;
-  return <></>;
+  return (
+    <>
+      <div className="flex">
+        <div className="logo">Sociopedia</div>
+        <div className="form">
+          <label htmlFor="Search">Search</label>
+          <input type="text" name="text" id="" className="border-2" />
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default Navbar;
