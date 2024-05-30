@@ -6,12 +6,15 @@ import { IoIosSearch } from "react-icons/io";
 import { MdMessage } from "react-icons/md";
 import { IoMdNotifications } from "react-icons/io";
 import { FaQuestionCircle } from "react-icons/fa";
+import { IoLogOut } from "react-icons/io5";
+import { setLogout } from "../../state";
 
 function Navbar() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
-  const fullName = `${user.firstName} ${user.lastName}`;
+  // const fullName = `${user.firstName} ${user.lastName}`;
+
   return (
     <>
       <div className="flex w-full justify-around h-20 items-center border-2">
@@ -32,9 +35,6 @@ function Navbar() {
           </div>
         </div>
         <div className="flex gap-x-8 items-center">
-          <div className="light">
-            <p>light</p>
-          </div>
           <div className="msg">
             <MdMessage />
           </div>
@@ -45,7 +45,12 @@ function Navbar() {
           <div className="questionMark">
             <FaQuestionCircle />
           </div>
-          <div className="dropdown">dropdown</div>
+          <div className="fullname font-semibold text-slate-700">
+            {/* {fullName} */}
+          </div>
+          <div className="logout">
+            {/* <IoLogOut onClick={() => dispatch(setLogout())} /> */}
+          </div>
         </div>
       </div>
     </>
