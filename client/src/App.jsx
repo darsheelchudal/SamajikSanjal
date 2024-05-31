@@ -4,19 +4,25 @@ import HomePage from "./pages/homePage";
 import LoginPage from "./pages/loginPage";
 import ProfilePage from "./pages/profilePage";
 import SignupPage from "./pages/signupPage/index";
+import { useSelector } from "react-redux";
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const isAuth = Boolean(useSelector((state) => state.token));
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginPage />}></Route>
-          <Route path="/signup" element={<SignupPage />}></Route>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
 
-          <Route path="/home" element={<HomePage />}></Route>
-          <Route path="/profile/:userId" element={<ProfilePage />}></Route>
+          <Route
+            path="/home"
+            element={isAuth ? <HomePage /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/profile/:userId"
+            element={isAuth ? <ProfilePage /> : <Navigate to="/" />}
+          />
         </Routes>
       </BrowserRouter>
       <div></div>

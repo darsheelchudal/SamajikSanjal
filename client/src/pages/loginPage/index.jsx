@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { setLogin } from "../../state/index";
 
 function LoginPage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,16 +27,28 @@ function LoginPage() {
         },
         body: JSON.stringify(formValues),
       });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
       const loggedIn = await response.json();
-      if (loggedIn) {
-        dispatch({
-          user: loggedIn.user,
-          token: loggedIn.token,
-        });
+      console.log("Login response:", loggedIn);
+
+      if (loggedIn.user && loggedIn.token) {
+        dispatch(
+          setLogin({
+            user: loggedIn.user,
+            token: loggedIn.token,
+          })
+        );
         navigate("/home");
+      } else {
+        throw new Error("Invalid login response. Missing user or token.");
       }
     } catch (error) {
       console.error("Error during login:", error);
+      setError("Login failed. Please check your email and password.");
     }
   };
 
@@ -74,6 +89,7 @@ function LoginPage() {
                   value={formValues.password}
                 />
               </div>
+              {error && <div className="mb-5 text-red-500">{error}</div>}
               <div className="mb-5">
                 <button
                   type="submit"
