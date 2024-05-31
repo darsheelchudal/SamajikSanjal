@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/homePage";
 import LoginPage from "./pages/loginPage";
 import ProfilePage from "./pages/profilePage";
+import SignupPage from "./pages/signupPage/index";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -12,6 +13,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginPage />}></Route>
+          <Route path="/signup" element={<SignupPage />}></Route>
+
           <Route path="/home" element={<HomePage />}></Route>
           <Route path="/profile/:userId" element={<ProfilePage />}></Route>
         </Routes>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function LoginPage() {
   return (
@@ -44,9 +45,11 @@ function LoginPage() {
             <div className="">
               <h1>
                 Don't have an account?
-                <span className="mx-2 text-blue-500 font-semibold">
-                  Sign up
-                </span>
+                <Link to="/signup">
+                  <span className="mx-2 text-blue-500 font-semibold">
+                    Sign up
+                  </span>
+                </Link>
               </h1>
             </div>
           </div>
