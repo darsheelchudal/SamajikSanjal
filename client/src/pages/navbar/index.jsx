@@ -1,19 +1,19 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import { MdMessage } from "react-icons/md";
 import { IoMdNotifications } from "react-icons/io";
 import { FaQuestionCircle } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 import { setLogout } from "../../state";
+import { FaUser } from "react-icons/fa";
 
 function Navbar() {
-  // const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  // const fullName = `${user.firstName} ${user.lastName}`;
+  const fullName = `${user.firstName} ${user.lastName}`;
 
   return (
     <>
@@ -45,12 +45,19 @@ function Navbar() {
           <div className="questionMark">
             <FaQuestionCircle />
           </div>
-          <div className="fullname font-semibold text-slate-700">
-            {/* {fullName} */}
-          </div>
-          <div className="logout">
-            {/* <IoLogOut onClick={() => dispatch(setLogout())} /> */}
-          </div>
+          <Link to="/profile">
+            <div className="fullname font-bold text-slate-700 flex items-center gap-x-2">
+              <FaUser />
+              {fullName}
+            </div>
+          </Link>
+          <button
+            className="logout cursor-auto bg-blue-600 w-[100px] h-8 flex justify-center items-center rounded-lg text-white gap-x-2 cursor:pointer shadow-lg"
+            onClick={() => dispatch(setLogout())}
+          >
+            Logout
+            <IoLogOut />
+          </button>
         </div>
       </div>
     </>
